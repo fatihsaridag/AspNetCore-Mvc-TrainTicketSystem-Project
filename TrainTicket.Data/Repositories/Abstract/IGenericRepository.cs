@@ -15,7 +15,7 @@ namespace TrainTicket.Data.Repositories.Abstract
         void Add(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);
-        List<TEntity> Where(Expression<Func<TEntity, bool>> predicate);
+        TEntity Where(Expression<Func<TEntity, bool>> predicate );
         
     }
 }

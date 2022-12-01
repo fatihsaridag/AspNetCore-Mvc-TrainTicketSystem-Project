@@ -4,10 +4,18 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TrainTicket.Data.Contexts;
+using TrainTicket.Data.Repositories.Abstract;
+using TrainTicket.Data.UnitOfWork.Abstract;
+using TrainTicket.Data.UnitOfWork.Concrete;
+using TrainTicket.Entity.Entities;
+using TrainTicket.Service.Abstract;
+using TrainTicket.Service.Concrete;
 
 namespace TrainTicket.MVC
 {
@@ -23,8 +31,18 @@ namespace TrainTicket.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+
+            services.AddDbContext<TrainTicketContext>();
             services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddScoped<IUnitOfWork,UnitOfWork>();
+            services.AddScoped<ITicketService,TicketManager>();
+            services.AddScoped<ICityService,CityManager>();
+            services.AddScoped<ITrainRouteService,TrainRouteManager>();
+
+            services.AddMvc();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

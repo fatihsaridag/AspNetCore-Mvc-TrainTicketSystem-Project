@@ -45,9 +45,11 @@ namespace TrainTicket.Data.Repositories.Concrete
             _context.Update(entity);
         }
 
-        public List<TEntity> Where(Expression<Func<TEntity, bool>> predicate)
+        public TEntity Where(Expression<Func<TEntity, bool>> predicate )
         {
-           return _context.Set<TEntity>().Where(predicate).ToList();
+            IQueryable<TEntity> query = _context.Set<TEntity>();
+            query = query.Where(predicate);
+            return query.FirstOrDefault();
         }
     }
 }

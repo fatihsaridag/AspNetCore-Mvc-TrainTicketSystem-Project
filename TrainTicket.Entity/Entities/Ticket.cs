@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,8 @@ namespace TrainTicket.Entity.Entities
 {
     public  class Ticket
     {
-        public int Id { get; set; }
+        [Key]
+        public int TicketId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string FromWhere { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace TrainTicket.Entity.Entities
 {
     public class TrainRoute
     {
+        [Key]
         public int RouteId { get; set; }
         public string StartRo { get; set; }
         public string Ro1 { get; set; }

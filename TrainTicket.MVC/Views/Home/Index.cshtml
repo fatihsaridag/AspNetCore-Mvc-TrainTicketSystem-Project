@@ -1,0 +1,53 @@
+﻿@model TrainTicket.MVC.Models.TicketRouteViewModel
+
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Carousel Start -->
+<div class="container-fluid p-0 mb-5">
+    <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#header-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="w-100" src="~/Image/tren.jpg" alt="Image">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    <div class="p-3" style="max-width: 900px;">
+                        <h5 class="text-white text-uppercase animated bounceInDown">Hemen Tren Bileti Sorgula !</h5>
+            <div class="container shadow" style="margin-bottom: 100px; padding: 10px 14px;">
+          <div class="form-group" style="display: inline;">
+              <form action="/home/index" class="form-inline" method="post">
+                  <select   class="form-select form-select-lg mb-3" asp-for="WhereToTrainRoute.StartRo"  asp-items="@ViewBag.Cities" style="width: 505px; height:53px;">
+                      <option selected disabled>Nereden</option>
+                  </select>
+                  <i class="fas fa-long-arrow-alt-right" style="padding: 0px 20px; font-size: 22px;"></i>
+                  <select   class="form-select form-select-lg mb-3" asp-for="WhereToTrainRoute.FinishRo"  asp-items="@ViewBag.Cities" style="width: 505px; height:53px;">
+                      <option selected disabled>Nereye</option>
+                  </select>
+                  <button type="submit" class="btn btn-danger btn-lg btn-block">Yolculuk Bul</button>
+              </form>
+          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Carousel End -->
+<!-- About Start -->
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+
+            <h3>@TempData["StartRo"]</h3>
+            <h3>@TempData["FinishRo"]</h3>
+
+        </div>
+</div>
