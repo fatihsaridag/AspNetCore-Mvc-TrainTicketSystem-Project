@@ -1,0 +1,17 @@
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.Service\bin\Debug\net5.0\TrainTicket.Service.deps.json
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.Service\bin\Debug\net5.0\TrainTicket.Service.dll
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.Service\bin\Debug\net5.0\TrainTicket.Service.pdb
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.Service\bin\Debug\net5.0\TrainTicket.Data.dll
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.Service\bin\Debug\net5.0\TrainTicket.Entity.dll
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.Service\bin\Debug\net5.0\TrainTicket.Data.pdb
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.Service\bin\Debug\net5.0\TrainTicket.Entity.pdb
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.Service\obj\Debug\net5.0\TrainTicket.Service.csproj.AssemblyReference.cache
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.Service\obj\Debug\net5.0\TrainTicket.Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.Service\obj\Debug\net5.0\TrainTicket.Service.AssemblyInfoInputs.cache
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.Service\obj\Debug\net5.0\TrainTicket.Service.AssemblyInfo.cs
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.Service\obj\Debug\net5.0\TrainTicket.Service.csproj.CoreCompileInputs.cache
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.Service\obj\Debug\net5.0\TrainTicket.Service.csproj.CopyComplete
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.Service\obj\Debug\net5.0\TrainTicket.Service.dll
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.Service\obj\Debug\net5.0\refint\TrainTicket.Service.dll
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.Service\obj\Debug\net5.0\TrainTicket.Service.pdb
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.Service\obj\Debug\net5.0\ref\TrainTicket.Service.dll
