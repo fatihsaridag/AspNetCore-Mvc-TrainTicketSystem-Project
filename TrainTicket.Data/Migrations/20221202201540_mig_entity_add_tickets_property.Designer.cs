@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrainTicket.Data.Contexts;
 
 namespace TrainTicket.Data.Migrations
 {
     [DbContext(typeof(TrainTicketContext))]
-    partial class TrainTicketContextModelSnapshot : ModelSnapshot
+    [Migration("20221202201540_mig_entity_add_tickets_property")]
+    partial class mig_entity_add_tickets_property
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

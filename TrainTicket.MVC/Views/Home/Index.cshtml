@@ -20,6 +20,14 @@
             <div class="carousel-item active">
                 <img class="w-100" src="~/Image/tren.jpg" alt="Image">
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                    @if (ViewBag.status == "false")
+                    {
+              
+                       <h3 class="text-danger"> Değerli Müşterimiz şu anda böyle bir yolculuk bulunmamaktadır..</h3>
+                                        
+                        
+                    }
+                  
                     <div class="p-3" style="max-width: 900px;">
                         <h5 class="text-white text-uppercase animated bounceInDown">Hemen Tren Bileti Sorgula !</h5>
             <div class="container shadow" style="margin-bottom: 100px; padding: 10px 14px;">
@@ -43,11 +51,34 @@
 </div>
 <!-- Carousel End -->
 <!-- About Start -->
-<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
-    <div class="container">
+@if (ViewBag.status == "true")
+    {
+            <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="container">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="card text-center">
+                                    <div class="card-header">
+                                        <h3 class="text-danger">@TempData["StartRo"] Tren İstasyonu >  @TempData["FinishRo"] Tren İstasyonu</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <h2 class="text-primary">Bilet İle İlgili Detaylar</h2>
+                                        <p class="card-text"><h5>Tarih:@TempData["Time"]</h5> <h5>Saat:@TempData["Clock"]</h5><h5>Fiyat: @TempData["Price"]</h5> </p>
+                                        <a href="#" class="btn btn-outline-success">Detaylar</a>
+                                        <a asp-controller="Home" asp-action="TicketBuy"  class="btn btn-outline-success">Bilet Al</a>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        <h2 class="card-title text-primary">Rotalar</h2>
+                                        <p class="card-text"><h5> @TempData["StartRo"] > @TempData["Ro1"] > @TempData["Ro2"] >  @TempData["Ro3"] >  @TempData["FinishRo"] </h5> </p>
 
-            <h3>@TempData["StartRo"]</h3>
-            <h3>@TempData["FinishRo"]</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
 
-        </div>
-</div>
+                    </div>
+            </div>        
+    }
+ 
