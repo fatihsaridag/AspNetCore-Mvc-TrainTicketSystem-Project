@@ -44,7 +44,25 @@
             </div>
         </form>
     </div>
-    <div class="col-md-5"></div>
+    <div class="col-md-5">
+        <table class="table table-bordered table-striped">
+            <h3 class="text text-primary text-center">Bilet Bilgileri</h3>
+            <tr>
+                <td>Nereden</td>
+                <td>Nereye</td>
+                <td>Tarih</td>
+                <td>Saat</td>
+                <td>Fiyat</td>
+            </tr>
+            <tr>
+                <td>@Model.TrainRoute.StartRo</td>
+                <td>@Model.TrainRoute.FinishRo</td>
+                <td>@Model.TrainRoute.Time</td>
+                <td>@Model.TrainRoute.Clock</td>
+                <td>@Model.TrainRoute.Price</td>
+            </tr>
+        </table>
+    </div>
 
     <div class="col-md-1"></div>
 

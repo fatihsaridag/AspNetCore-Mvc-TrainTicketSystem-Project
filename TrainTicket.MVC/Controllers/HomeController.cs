@@ -68,6 +68,7 @@ namespace TrainTicket.MVC.Controllers
                 TempData["Time"] = trainRoute.Time;
                 TempData["Clock"] = trainRoute.Clock;
                 TempData["Price"] = trainRoute.Price;
+                TempData["TrainRouteId"] = trainRoute.RouteId;
                 ViewBag.status = "true";
                 return View(ticketRouteViewModel);
             }
@@ -77,10 +78,16 @@ namespace TrainTicket.MVC.Controllers
 
 
         [HttpGet]
-        public IActionResult TicketBuy(TicketRouteViewModel ticketRouteViewModel)
+        public IActionResult TicketBuy(int id)
         {
+           var trainRoute =  _trainRouteService.TGetById(id);
 
-            return View();
+            TicketBuyViewModel ticketBuyViewModel = new TicketBuyViewModel
+            {
+                TrainRoute = trainRoute,
+            };
+
+            return View(ticketBuyViewModel);
         }
 
 

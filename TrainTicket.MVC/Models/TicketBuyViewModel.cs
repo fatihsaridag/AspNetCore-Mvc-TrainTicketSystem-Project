@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TrainTicket.Entity.Entities;
 
 namespace TrainTicket.MVC.Models
 {
@@ -20,6 +21,9 @@ namespace TrainTicket.MVC.Models
         [Required(ErrorMessage = "Lütfen emailinizi giriniz")]
         [EmailAddress]
         public string Email { get; set; }
+
+
+        public TrainRoute TrainRoute { get; set; }
 
     }
 }
