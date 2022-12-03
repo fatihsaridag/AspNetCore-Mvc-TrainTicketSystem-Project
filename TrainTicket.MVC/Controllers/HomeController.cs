@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using System.Collections.Generic;
+using System.Text.Json;
 using TrainTicket.Entity.Entities;
 using TrainTicket.MVC.Models;
 using TrainTicket.Service.Abstract;
@@ -81,19 +83,28 @@ namespace TrainTicket.MVC.Controllers
         public IActionResult TicketBuy(int id)
         {
            var trainRoute =  _trainRouteService.TGetById(id);
+            TempData["TrainRouteId"] = trainRoute.RouteId.ToString();
+            TempData["StartRo"] = trainRoute.StartRo;
+            TempData["FinishRo"] = trainRoute.FinishRo;
+            TempData["Time"] = trainRoute.Time;
+            TempData["Clock"] = trainRoute.Clock;
+            TempData["Price"] = trainRoute.Price;
 
-            TicketBuyViewModel ticketBuyViewModel = new TicketBuyViewModel
-            {
-                TrainRoute = trainRoute,
-            };
+            string data = JsonSerializer.Serialize(trainRoute);
+            TempData["trainRoute"] = data;
 
-            return View(ticketBuyViewModel);
+            return View();
         }
 
 
         [HttpPost]
         public IActionResult TicketBuy(TicketBuyViewModel ticketBuyViewModel)
         {
+
+            var data = TempData["trainRoute"].ToString();
+            var products = JsonSerializer.Deserialize<TrainRoute>(data);
+
+
             if (ModelState.IsValid)
             {
                 Ticket ticket = new Ticket()
@@ -101,11 +112,17 @@ namespace TrainTicket.MVC.Controllers
                     FirstName = ticketBuyViewModel.FirstName,
                     LastName = ticketBuyViewModel.LastName,
                     Email = ticketBuyViewModel.Email,
-                    PhoneNumber = ticketBuyViewModel.PhoneNumber
+                    PhoneNumber = ticketBuyViewModel.PhoneNumber,
+                    TrainRouteId = products.RouteId,
+                    FromWhere = products.StartRo,
+                    ToWhere = products.FinishRo,
+                    Price = products.Price
                 };
-                _ticketService.TAdd(ticket);
-                return RedirectToAction("TicketBuy");
+
+                ViewBag.success = "true";
+                return View(ticketBuyViewModel);
             }
+            ViewBag.status = "error";
             return View(ticketBuyViewModel);
 
         }

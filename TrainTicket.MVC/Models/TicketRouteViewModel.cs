@@ -10,6 +10,7 @@ namespace TrainTicket.MVC.Models
 
         public TrainRoute WhereToTrainRoute { get; set; }
 
-        public RouteModel  RouteModel { get; set; } 
+        public RouteModel  RouteModel { get; set; }
+
     }
 }

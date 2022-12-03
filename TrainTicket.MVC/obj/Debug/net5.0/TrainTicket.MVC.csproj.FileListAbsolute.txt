@@ -162,3 +162,5 @@ C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\bin\Debug\net5.0\libman.
 C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\bin\Debug\net5.0\Mapster.dll
 C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\bin\Debug\net5.0\Mapster.Core.dll
 C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\obj\Debug\net5.0\Razor\Views\Home\TicketBuy.cshtml.g.cs
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\obj\Debug\net5.0\Razor\Views\Shared\_HeadPartial.cshtml.g.cs
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\obj\Debug\net5.0\Razor\Views\Shared\_ScriptPartial.cshtml.g.cs

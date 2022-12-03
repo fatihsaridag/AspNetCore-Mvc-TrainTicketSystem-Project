@@ -23,7 +23,5 @@ namespace TrainTicket.MVC.Models
         public string Email { get; set; }
 
 
-        public TrainRoute TrainRoute { get; set; }
-
     }
 }
