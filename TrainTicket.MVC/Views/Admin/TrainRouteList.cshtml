@@ -1,0 +1,63 @@
+﻿@model List<TrainRoute>
+
+@{
+    ViewData["Title"] = "TrainRouteList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10">
+            <table class="table table-bordered table-striped">
+                <h3 class="text text-primary text-center mt-2">Bilet Bilgileri</h3>
+                <tr>
+                    <th>#</th>
+                    <th>Başlangıç</th>
+                    <th>Rota 1</th>
+                    <th>Rota 2</th>
+                    <th>Rota 3</th>
+                    <th>Bitiş</th>
+                    <th>Zaman</th>
+                    <th>Saat</th>
+                    <th>Resim</th>
+                    <th>Düzenle</th>
+                    <th>Sil</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.RouteId</td>
+                        <td>@item.StartRo</td>
+                        <td>@item.Ro1</td>
+                        <td>@item.Ro2</td>
+                        <td>@item.Ro3</td>
+                        <td>@item.FinishRo</td>
+                        <td>@item.Time</td>
+                        <td>@item.Clock</td>
+                        <td>@item.Image</td>
+                        <td><a asp-controller="Admin" asp-action="TrainRouteEdit" asp-route-id="@item.RouteId" class="btn btn-outline-info">Düzenle</a></td>
+                        <td><a asp-controller="Admin" asp-action="TrainRouteDelete" asp-route-id="@item.RouteId" class="btn btn-outline-danger">Sil</a></td>
+                    </tr>
+                }
+            </table>
+
+        </div>
+        <div class="col-md-1">
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-4"> </div>
+        <div class="col-md-4">
+            <h3 class="text-success text-center">Tren Rotası Ekle</h3>
+            <a asp-controller="Admin" asp-action="TrainRouteAdd" class="btn btn-primary form-control">Ekle</a>
+        </div>
+        <div class="col-md-4"></div>
+
+
+    </div>
+
+
+</div>
+

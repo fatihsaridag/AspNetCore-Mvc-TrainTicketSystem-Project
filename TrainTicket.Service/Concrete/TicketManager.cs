@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,10 +15,12 @@ namespace TrainTicket.Service.Concrete
     {
 
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
 
-        public TicketManager(IUnitOfWork unitOfWork)
+        public TicketManager(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public void TAdd(Ticket entity)
@@ -45,11 +48,11 @@ namespace TrainTicket.Service.Concrete
             return _unitOfWork.Tickets.GetById(Id);
         }
 
+
         public void TUpdate(Ticket entity)
         {
             _unitOfWork.Tickets.Update(entity);
             _unitOfWork.SaveChangesAsync();
-
         }
 
 

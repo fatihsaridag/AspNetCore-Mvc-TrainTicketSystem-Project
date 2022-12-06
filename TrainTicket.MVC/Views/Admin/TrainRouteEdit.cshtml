@@ -1,0 +1,72 @@
+﻿@model TrainTicket.MVC.Models.TrainRouteEditViewModel
+
+@{
+    ViewData["Title"] = "TrainRouteEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h4>Tren Bileti Düzenle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="TrainRouteEdit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RouteId" class="control-label"></label>
+                <input asp-for="RouteId" class="form-control" />
+                <span asp-validation-for="RouteId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartRo" class="control-label"></label>
+                <input asp-for="StartRo" class="form-control" />
+                <span asp-validation-for="StartRo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ro1" class="control-label"></label>
+                <input asp-for="Ro1" class="form-control" />
+                <span asp-validation-for="Ro1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ro2" class="control-label"></label>
+                <input asp-for="Ro2" class="form-control" />
+                <span asp-validation-for="Ro2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ro3" class="control-label"></label>
+                <input asp-for="Ro3" class="form-control" />
+                <span asp-validation-for="Ro3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FinishRo" class="control-label"></label>
+                <input asp-for="FinishRo" class="form-control" />
+                <span asp-validation-for="FinishRo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Time" class="control-label"></label>
+                <input asp-for="Time" class="form-control" />
+                <span asp-validation-for="Time" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Clock" class="control-label"></label>
+                <input asp-for="Clock" class="form-control" />
+                <span asp-validation-for="Clock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

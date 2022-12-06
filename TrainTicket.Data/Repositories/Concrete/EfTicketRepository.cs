@@ -14,5 +14,7 @@ namespace TrainTicket.Data.Repositories.Concrete
         public EfTicketRepository(DbContext context) : base(context)
         {
         }
+
+    
     }
 }

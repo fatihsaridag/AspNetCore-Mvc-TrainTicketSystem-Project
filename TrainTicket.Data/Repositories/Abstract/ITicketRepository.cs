@@ -9,6 +9,5 @@ namespace TrainTicket.Data.Repositories.Abstract
 {
     public interface ITicketRepository : IGenericRepository<Ticket>
     {
-
     }
 }

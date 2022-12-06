@@ -12,8 +12,22 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
+#nullable restore
+#line 2 "C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\Views\_ViewImports.cshtml"
+using TrainTicket.Entity.Entities;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\Views\_ViewImports.cshtml"
+using TrainTicket.MVC.Models;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d2a5150ae53de7cb2004f990eefa035ced3e2c32", @"/Views/Shared/_NavbarPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b853c2693020103458b52d8246f923ca3fd89014", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5a5192b1524d2466da9c18a0050c9dbb630e8e2e", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Shared__NavbarPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     #nullable disable
@@ -47,7 +61,7 @@ namespace AspNetCore
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("<nav class=\"navbar navbar-expand-lg bg-white navbar-light shadow-sm py-3 py-lg-0 px-3 px-lg-0\">\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d2a5150ae53de7cb2004f990eefa035ced3e2c324227", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d2a5150ae53de7cb2004f990eefa035ced3e2c324618", async() => {
                 WriteLiteral("\r\n        <h1 class=\"display-5 m-0 text-primary\">Sarıdağ Tren Bilet</h1>\r\n    ");
             }
             );
@@ -72,7 +86,7 @@ namespace AspNetCore
     <div class=""collapse navbar-collapse"" id=""navbarCollapse"">
         <div class=""navbar-nav ms-auto py-0"">
             ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d2a5150ae53de7cb2004f990eefa035ced3e2c326063", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d2a5150ae53de7cb2004f990eefa035ced3e2c326454", async() => {
                 WriteLiteral("Anasayfa");
             }
             );

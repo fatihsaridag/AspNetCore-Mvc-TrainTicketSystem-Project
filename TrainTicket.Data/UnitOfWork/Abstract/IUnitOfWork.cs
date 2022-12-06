@@ -12,7 +12,7 @@ namespace TrainTicket.Data.UnitOfWork.Abstract
         ITicketRepository Tickets { get; }
         ITrainRouteRepository TrainRoutes { get; }
         ICityRepository Cities { get; }
-        Task<int> SaveChangesAsync();
+        int SaveChangesAsync();
 
     }
 }

@@ -118,7 +118,7 @@ namespace TrainTicket.MVC.Controllers
                     ToWhere = products.FinishRo,
                     Price = products.Price
                 };
-
+                _ticketService.TAdd(ticket);
                 ViewBag.success = "true";
                 return View(ticketBuyViewModel);
             }

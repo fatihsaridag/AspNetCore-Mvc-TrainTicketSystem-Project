@@ -1,0 +1,25 @@
+﻿@model TrainTicket.MVC.Models.CityAddViewModel
+
+@{
+    ViewData["Title"] = "CityAdd";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h4>Şehir Ekle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CityAdd" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CityName" class="control-label"></label>
+                <input asp-for="CityName" class="form-control" />
+                <span asp-validation-for="CityName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Oluştur" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

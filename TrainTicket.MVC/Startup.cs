@@ -14,6 +14,7 @@ using TrainTicket.Data.Repositories.Abstract;
 using TrainTicket.Data.UnitOfWork.Abstract;
 using TrainTicket.Data.UnitOfWork.Concrete;
 using TrainTicket.Entity.Entities;
+using TrainTicket.MVC.AutoMapper.Profiles;
 using TrainTicket.Service.Abstract;
 using TrainTicket.Service.Concrete;
 
@@ -31,7 +32,7 @@ namespace TrainTicket.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddAutoMapper(typeof(TicketProfile) , typeof(TrainRouteProfile) , typeof(CityProfile));
             services.AddDbContext<TrainTicketContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();

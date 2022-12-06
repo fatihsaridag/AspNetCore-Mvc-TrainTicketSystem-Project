@@ -14,5 +14,7 @@ namespace TrainTicket.Service.Abstract
         void TUpdate(Ticket entity);
         void TDelete(Ticket entity);
         List<Ticket> TGetAll();
+
+
     }
 }

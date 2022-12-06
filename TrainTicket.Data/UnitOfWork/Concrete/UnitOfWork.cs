@@ -36,10 +36,9 @@ namespace TrainTicket.Data.UnitOfWork.Concrete
         }
 
 
-        public async Task<int> SaveChangesAsync()
+        public int SaveChangesAsync()
         {
-            return await _context.SaveChangesAsync();
-
+            return _context.SaveChanges();
         }
     }
 }
