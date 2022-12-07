@@ -2,6 +2,8 @@
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Text.Json;
 using TrainTicket.Entity.Entities;
 using TrainTicket.MVC.Models;
 using TrainTicket.Service.Abstract;
@@ -119,8 +121,16 @@ namespace TrainTicket.MVC.Controllers
         [HttpGet]
         public IActionResult TrainRouteEdit(int id)
         {
+
+            TicketRouteViewModel ticketRouteViewModel = new TicketRouteViewModel();
+            ticketRouteViewModel.Cities = _cityService.TGetAll();
+            ViewBag.Cities = new SelectList(ticketRouteViewModel.Cities, "CityId", "CityName");
             var trainRoute  = _trainRouteService.TGetById(id);
             var TrainRouteViewModel = trainRoute.Adapt<TrainRouteEditViewModel>();
+
+
+
+
             return View(TrainRouteViewModel);
         }
 
@@ -128,20 +138,31 @@ namespace TrainTicket.MVC.Controllers
         [HttpPost]
         public IActionResult TrainRouteEdit(TrainRouteEditViewModel trainUpdateViewModel)
         {
+            var intStartRo = int.Parse(trainUpdateViewModel.StartRo);
+            var intRo1 = int.Parse(trainUpdateViewModel.Ro1);
+            var intRo2 = int.Parse(trainUpdateViewModel.Ro2);
+            var intRo3 = int.Parse(trainUpdateViewModel.Ro3);
+            var intFinishRo = int.Parse(trainUpdateViewModel.FinishRo);
+
+            var startRoCityName = _cityService.TGetById(intStartRo).CityName;
+            var ro1CityName = _cityService.TGetById(intRo1).CityName;
+            var ro2CityName = _cityService.TGetById(intRo2).CityName;
+            var ro3CityName = _cityService.TGetById(intRo3).CityName;
+            var finishRoCityName = _cityService.TGetById(intFinishRo).CityName;
             if (ModelState.IsValid) {
 
                 var trainRoute = _trainRouteService.TGetById(trainUpdateViewModel.RouteId);
                 if (trainRoute != null)
                 {
-                    trainRoute.StartRo = trainUpdateViewModel.StartRo;
-                    trainRoute.Ro1 = trainUpdateViewModel.Ro1;
-                    trainRoute.Ro2 = trainUpdateViewModel.Ro2;
-                    trainRoute.Ro3 = trainUpdateViewModel.Ro3;
-                    trainRoute.FinishRo = trainUpdateViewModel.FinishRo;
+                    trainRoute.StartRo = startRoCityName;
+                    trainRoute.Ro1 = ro1CityName;
+                    trainRoute.Ro2 = ro2CityName;
+                    trainRoute.Ro3 = ro3CityName;
+                    trainRoute.FinishRo = finishRoCityName;
                     trainRoute.Time = trainUpdateViewModel.Time;
                     trainRoute.Clock = trainUpdateViewModel.Clock;
-                    trainRoute.Price = trainUpdateViewModel.Price;
                     trainRoute.Image = trainUpdateViewModel.Image;
+                    trainRoute.Price = trainUpdateViewModel.Price;
                     _trainRouteService.TUpdate(trainRoute);
                     return RedirectToAction("TrainRouteList");
                 }
@@ -163,16 +184,42 @@ namespace TrainTicket.MVC.Controllers
         [HttpGet]
         public IActionResult TrainRouteAdd()
         {
+            TicketRouteViewModel ticketRouteViewModel = new TicketRouteViewModel();
+            ticketRouteViewModel.Cities = _cityService.TGetAll();
+            ViewBag.Cities = new SelectList(ticketRouteViewModel.Cities, "CityId", "CityName");
             return View();
         }
 
         [HttpPost]
         public IActionResult TrainRouteAdd(TrainRouteAddViewModel trainRouteAddViewModel)
         {
+            var intStartRo = int.Parse(trainRouteAddViewModel.StartRo);
+            var intRo1 = int.Parse(trainRouteAddViewModel.Ro1);
+            var intRo2 = int.Parse(trainRouteAddViewModel.Ro2);
+            var intRo3 = int.Parse(trainRouteAddViewModel.Ro3);
+            var intFinishRo = int.Parse(trainRouteAddViewModel.FinishRo);
+
+            var startRoCityName = _cityService.TGetById(intStartRo).CityName;
+            var ro1CityName = _cityService.TGetById(intRo1).CityName;
+            var ro2CityName = _cityService.TGetById(intRo2).CityName;
+            var ro3CityName = _cityService.TGetById(intRo3).CityName;
+            var finishRoCityName = _cityService.TGetById(intFinishRo).CityName;
+
+
             if (ModelState.IsValid)
             {
-               var trainRoute =  _mapper.Map<TrainRoute>(trainRouteAddViewModel);
-                _trainRouteService.TUpdate(trainRoute);
+               var trainRoute = new TrainRoute();
+                trainRoute.StartRo = startRoCityName;
+                trainRoute.Ro1 = ro1CityName;
+                trainRoute.Ro2 = ro2CityName;
+                trainRoute.Ro3 = ro3CityName;
+                trainRoute.FinishRo = finishRoCityName;
+                trainRoute.Time = trainRouteAddViewModel.Time;
+                trainRoute.Clock = trainRouteAddViewModel.Clock;
+                trainRoute.Image = trainRouteAddViewModel.Image;
+                trainRoute.Price = trainRouteAddViewModel.Price;
+
+                _trainRouteService.TAdd(trainRoute);
                 return RedirectToAction("TrainRouteList");
             }
             return View(trainRouteAddViewModel);
@@ -224,5 +271,11 @@ namespace TrainTicket.MVC.Controllers
             }
             return View(cityAddViewModel);
         }
+
+
+
+  
+
+
     }
 }

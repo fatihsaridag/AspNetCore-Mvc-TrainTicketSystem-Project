@@ -1128,6 +1128,9 @@
         }
       },
       "TrainTicket.Entity/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.7"
+        },
         "runtime": {
           "TrainTicket.Entity.dll": {}
         }

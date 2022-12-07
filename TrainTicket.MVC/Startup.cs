@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -32,6 +33,7 @@ namespace TrainTicket.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews();
             services.AddAutoMapper(typeof(TicketProfile) , typeof(TrainRouteProfile) , typeof(CityProfile));
             services.AddDbContext<TrainTicketContext>();
             services.AddControllersWithViews();
@@ -40,7 +42,6 @@ namespace TrainTicket.MVC
             services.AddScoped<ITicketService,TicketManager>();
             services.AddScoped<ICityService,CityManager>();
             services.AddScoped<ITrainRouteService,TrainRouteManager>();
-
             services.AddMvc();
 
 

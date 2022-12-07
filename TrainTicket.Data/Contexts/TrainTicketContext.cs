@@ -11,6 +11,7 @@ namespace TrainTicket.Data.Contexts
 {
     public class TrainTicketContext : DbContext
     {
+     
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<TrainRoute>  TrainRoutes { get; set; }
         public DbSet<City> Cities { get; set; }
@@ -20,6 +21,7 @@ namespace TrainTicket.Data.Contexts
         {
             optionsBuilder.UseSqlServer("server=(localdb)\\MSSQLLocalDB; database=TrainTicketDB;integrated security=true;");
         }
+
 
 
     }
