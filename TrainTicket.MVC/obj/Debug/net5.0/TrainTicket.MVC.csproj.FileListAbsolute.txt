@@ -186,3 +186,6 @@ C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\obj\Debug\net5.0\Razor\V
 C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\obj\Debug\net5.0\Razor\Views\Admin\TrainRouteAdd.cshtml.g.cs
 C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\obj\Debug\net5.0\Razor\Views\Admin\CityEdit.cshtml.g.cs
 C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\obj\Debug\net5.0\Razor\Views\Admin\CityAdd.cshtml.g.cs
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\obj\Debug\net5.0\Razor\Views\UserLogin\SignIn.cshtml.g.cs
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\obj\Debug\net5.0\Razor\Views\UserLogin\SignUp.cshtml.g.cs
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\obj\Debug\net5.0\Razor\Views\Home\TrainRouteDetail.cshtml.g.cs

@@ -65,7 +65,7 @@
                                     <div class="card-body">
                                         <h2 class="text-primary">Bilet İle İlgili Detaylar</h2>
                                         <p class="card-text"><h5>Tarih:@TempData["Time"]</h5> <h5>Saat:@TempData["Clock"]</h5><h5>Fiyat: @TempData["Price"]</h5> </p>
-                                        <a href="#" class="btn btn-outline-success">Detaylar</a>
+                                <a asp-controller="Home" asp-action="TrainRouteDetail" asp-route-id="@TempData["TrainRouteId"]" class="btn btn-outline-success">Detaylar</a>
                                 <a asp-controller="Home" asp-action="TicketBuy" asp-route-id="@TempData["TrainRouteId"]" class="btn btn-outline-success">Bilet Al</a>
                                     </div>
                                     <div class="card-footer text-muted">

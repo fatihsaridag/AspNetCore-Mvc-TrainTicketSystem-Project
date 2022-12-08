@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using TrainTicket.Data.Contexts;
@@ -42,7 +44,24 @@ namespace TrainTicket.MVC
             services.AddScoped<ITicketService,TicketManager>();
             services.AddScoped<ICityService,CityManager>();
             services.AddScoped<ITrainRouteService,TrainRouteManager>();
+            services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<TrainTicketContext>();
             services.AddMvc();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = new PathString("/UserLogin/SignIn");
+                options.LogoutPath = new PathString("/UserLogin/LogOut");
+                options.AccessDeniedPath = new PathString("/Admin/AccessDenied");
+                options.Cookie = new CookieBuilder
+                {
+                    Name = "TrainTicket",
+                    HttpOnly= true,
+                    SameSite = SameSiteMode.Strict,
+                    SecurePolicy = CookieSecurePolicy.SameAsRequest
+                   
+                };
+                options.SlidingExpiration = true;
+                options.ExpireTimeSpan = TimeSpan.FromDays(7);
+            });
 
 
         }
@@ -65,7 +84,7 @@ namespace TrainTicket.MVC
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace TrainTicket.Entity.Entities
 {
-    public class AppUser 
+    public class AppUser : IdentityUser<string>
     {
         public string Name { get; set; }
     }

@@ -1,0 +1,31 @@
+﻿@model TrainRoute
+
+
+@{
+    ViewData["Title"] = "TrainRouteDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mt-3">
+    <div class="col-md-6 ml-2">
+        <img style="width:800px; height:500px"  src="@Model.Image"/>
+    </div>
+    <div class="col-md-6 mt-5">
+        <div class="card" style="width: 50rem;">
+            <div class="card-body">
+                <h3  class="card-title text-center text-primary">@Model.StartRo İstasyon ---------------->  @Model.FinishRo İstasyon</h3>
+                <hr />
+                <h4 class="text-center text-danger">Rotalarımız</h4>
+                <hr />
+                <h5 class="text-center">@Model.StartRo -- @Model.Ro1 -- @Model.Ro2 -- @Model.Ro2 -- @Model.FinishRo </h5>
+                <h6 class="text-center"> Tarih : @Model.Time </h6>
+                <h6 class="text-center"> Saat : @Model.Clock </h6>
+                <h6 class="text-center"> Fiyatı : @Model.Price ₺ </h6>
+                <div class="text-center">
+                    <a asp-controller="Home" asp-action="TicketBuy" asp-route-id="@TempData["RouteId"]" class="btn btn-outline-primary">Bilet Satın Al</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

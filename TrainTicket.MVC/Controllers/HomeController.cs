@@ -127,5 +127,14 @@ namespace TrainTicket.MVC.Controllers
 
         }
 
+
+        public IActionResult TrainRouteDetail(int id)
+        {
+            var trainRoute = _trainRouteService.TGetById(id);
+            TempData["RouteId"] = id;
+            return View(trainRoute);
+        }
+
+
     }
 }

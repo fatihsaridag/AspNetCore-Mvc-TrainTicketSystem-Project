@@ -1,28 +1,36 @@
 ﻿using AutoMapper;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Text.Json;
+using System.Threading.Tasks;
 using TrainTicket.Entity.Entities;
 using TrainTicket.MVC.Models;
 using TrainTicket.Service.Abstract;
 
 namespace TrainTicket.MVC.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly ITicketService _ticketService;
         private readonly ITrainRouteService _trainRouteService;
         private readonly ICityService _cityService;
         private readonly IMapper _mapper;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public AdminController(ITicketService ticketService, ITrainRouteService trainRouteService, ICityService cityService, IMapper mapper)
+        public AdminController(ITicketService ticketService, ITrainRouteService trainRouteService, ICityService cityService, IMapper mapper,UserManager<AppUser> userManager , SignInManager<AppUser> signInManager)
         {
             _ticketService = ticketService;
             _trainRouteService = trainRouteService;
             _cityService = cityService;
             _mapper = mapper;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public IActionResult Index()
@@ -274,8 +282,7 @@ namespace TrainTicket.MVC.Controllers
 
 
 
-  
-
+     
 
     }
 }
