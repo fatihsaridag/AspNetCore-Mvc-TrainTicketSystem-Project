@@ -328,7 +328,7 @@ namespace TrainTicket.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-              var user = await  _userManager.FindByNameAsync(User.Identity.Name);
+              var user = await  _userManager.FindByNameAsync(User.Identity.Name);   //Cookie üzerinden
 
                 user.UserName = userViewModel.UserName;
                 user.Email = userViewModel.Email;
