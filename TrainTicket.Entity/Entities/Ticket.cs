@@ -20,7 +20,7 @@ namespace TrainTicket.Entity.Entities
         public int seatNo { get; set; }
         public int Price { get; set; }
         public int TrainRouteId { get; set; }       //Bir biletin yalnızca bir rotası olabilir.
-        public TrainRoute  trainRoute { get; set; } 
-
+        public TrainRoute  trainRoute { get; set; }
+        public string TicketNo { get; set; }
     }
 }

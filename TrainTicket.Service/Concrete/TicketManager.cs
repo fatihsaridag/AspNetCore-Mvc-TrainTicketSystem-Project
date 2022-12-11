@@ -48,6 +48,11 @@ namespace TrainTicket.Service.Concrete
             return _unitOfWork.Tickets.GetById(Id);
         }
 
+        public Ticket TicketQuery(string query)
+        {
+          var ticket =   _unitOfWork.Tickets.Where(x => x.TicketNo == query);
+            return ticket;
+        }
 
         public void TUpdate(Ticket entity)
         {

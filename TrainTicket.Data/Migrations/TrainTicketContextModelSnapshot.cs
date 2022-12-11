@@ -261,6 +261,9 @@ namespace TrainTicket.Data.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
+                    b.Property<string>("TicketNo")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ToWhere")
                         .HasColumnType("nvarchar(max)");
 

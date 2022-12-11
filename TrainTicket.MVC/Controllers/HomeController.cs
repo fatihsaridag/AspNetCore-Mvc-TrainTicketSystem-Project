@@ -116,9 +116,18 @@ namespace TrainTicket.MVC.Controllers
                     TrainRouteId = products.RouteId,
                     FromWhere = products.StartRo,
                     ToWhere = products.FinishRo,
-                    Price = products.Price
+                    Price = products.Price,
+                    TicketNo = Guid.NewGuid().ToString()
                 };
+
                 _ticketService.TAdd(ticket);
+
+                TempData["FirstName"] = ticket.FirstName;
+                TempData["LastName"] = ticket.LastName;
+                TempData["TicketNo"] = ticket.TicketNo;
+                TempData["StartRo"] = products.StartRo;
+                TempData["FinishRo"] = products.FinishRo;
+
                 ViewBag.success = "true";
                 return View(ticketBuyViewModel);
             }
@@ -135,6 +144,50 @@ namespace TrainTicket.MVC.Controllers
             return View(trainRoute);
         }
 
+        [HttpGet]
+        public IActionResult TicketQuery()
+        {
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult TicketQuery(TicketQueryModel ticketQueryModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var ticket = _ticketService.TicketQuery(ticketQueryModel.TicketNo);
+                if (ticket != null)
+                {
+                    ViewBag.status = "true";
+
+                    TempData["FirstName"] = ticket.FirstName;
+                    TempData["LastName"] = ticket.LastName;
+                    TempData["FromWhere"] = ticket.FromWhere;
+                    TempData["ToWhere"] = ticket.ToWhere;
+                    TempData["Email"] = ticket.Email;
+                    TempData["Price"] = ticket.Price;
+                    TempData["PhoneNumber"] = ticket.PhoneNumber;
+                    TempData["Id"] = ticket.TicketId;
+
+                    return View();
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Böyle bir bilet bulunamadı");
+                    return View();
+                }
+            }
+            return View(ticketQueryModel);
+        }
+
+        public IActionResult TicketCancel(int id)
+        {
+            var ticket = _ticketService.TGetById(id);
+            _ticketService.TDelete(ticket);
+            return RedirectToAction("TicketQuery");
+        }
 
     }
 }

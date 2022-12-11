@@ -47,7 +47,33 @@
             </div>
         }
 
+
+
         </div>
+    @if (ViewBag.Success == "true")
+    {
+        <div class="col-md-5">
+            <table class="table table-bordered table-striped">
+                <h3 class="text text-primary text-center">Bilet Bilgileri</h3>
+                <tr>
+                    <td>Adı</td>
+                    <td>Soyadı</td>
+                    <td>Bilet Numarası</td>
+                    <td>Nereden</td>
+                    <td>Nereye</td>
+                </tr>
+                <tr>
+                    <td>@TempData["FirstName"]</td>
+                    <td>@TempData["LastName"]</td>
+                    <td>@TempData["TicketNo"]</td>
+                    <td>@TempData["StartRo"]</td>
+                    <td>@TempData["FinishRo"]</td>
+                </tr>
+            </table>
+        </div>
+    }
+    else
+    {
         <div class="col-md-5">
             <table class="table table-bordered table-striped">
                 <h3 class="text text-primary text-center">Bilet Bilgileri</h3>
@@ -67,6 +93,8 @@
                 </tr>
             </table>
         </div>
+
+    }
 
         <div class="col-md-1"></div>
 
