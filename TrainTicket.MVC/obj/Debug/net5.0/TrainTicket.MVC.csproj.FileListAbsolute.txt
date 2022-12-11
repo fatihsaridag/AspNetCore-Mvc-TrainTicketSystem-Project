@@ -190,3 +190,5 @@ C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\obj\Debug\net5.0\Razor\V
 C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\obj\Debug\net5.0\Razor\Views\UserLogin\SignUp.cshtml.g.cs
 C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\obj\Debug\net5.0\Razor\Views\Home\TrainRouteDetail.cshtml.g.cs
 C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\obj\Debug\net5.0\Razor\Views\Home\TicketQuery.cshtml.g.cs
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\obj\Debug\net5.0\Razor\Views\Admin\MyProfile.cshtml.g.cs
+C:\Users\fatih\source\repos\TrainTicket\TrainTicket.MVC\obj\Debug\net5.0\Razor\Views\Admin\UserEdit.cshtml.g.cs

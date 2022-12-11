@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
 using TrainTicket.Entity.Entities;
@@ -144,7 +147,7 @@ namespace TrainTicket.MVC.Controllers
 
 
         [HttpPost]
-        public IActionResult TrainRouteEdit(TrainRouteEditViewModel trainUpdateViewModel)
+        public async Task<IActionResult> TrainRouteEdit(TrainRouteEditViewModel trainUpdateViewModel, IFormFile Image)
         {
             var intStartRo = int.Parse(trainUpdateViewModel.StartRo);
             var intRo1 = int.Parse(trainUpdateViewModel.Ro1);
@@ -159,20 +162,33 @@ namespace TrainTicket.MVC.Controllers
             var finishRoCityName = _cityService.TGetById(intFinishRo).CityName;
             if (ModelState.IsValid) {
 
-                var trainRoute = _trainRouteService.TGetById(trainUpdateViewModel.RouteId);
-                if (trainRoute != null)
+                if (Image != null && Image.Length > 0)
                 {
-                    trainRoute.StartRo = startRoCityName;
-                    trainRoute.Ro1 = ro1CityName;
-                    trainRoute.Ro2 = ro2CityName;
-                    trainRoute.Ro3 = ro3CityName;
-                    trainRoute.FinishRo = finishRoCityName;
-                    trainRoute.Time = trainUpdateViewModel.Time;
-                    trainRoute.Clock = trainUpdateViewModel.Clock;
-                    trainRoute.Image = trainUpdateViewModel.Image;
-                    trainRoute.Price = trainUpdateViewModel.Price;
-                    _trainRouteService.TUpdate(trainRoute);
-                    return RedirectToAction("TrainRouteList");
+                    
+                    var trainRoute = _trainRouteService.TGetById(trainUpdateViewModel.RouteId);
+                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(Image.FileName);
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/TrenRouteMap", fileName);
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await Image.CopyToAsync(stream);
+                        trainRoute.Image = "/TrenRouteMap/" + fileName;
+
+                    };
+
+                    if (trainRoute != null)
+                    {
+                        trainRoute.StartRo = startRoCityName;
+                        trainRoute.Ro1 = ro1CityName;
+                        trainRoute.Ro2 = ro2CityName;
+                        trainRoute.Ro3 = ro3CityName;
+                        trainRoute.FinishRo = finishRoCityName;
+                        trainRoute.Time = trainUpdateViewModel.Time;
+                        trainRoute.Clock = trainUpdateViewModel.Clock;
+                        trainRoute.Price = trainUpdateViewModel.Price;
+                        _trainRouteService.TUpdate(trainRoute);
+                        return RedirectToAction("TrainRouteList");
+                    }
+                    return View(trainUpdateViewModel);
                 }
                 return View(trainUpdateViewModel);
             }
@@ -199,7 +215,7 @@ namespace TrainTicket.MVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult TrainRouteAdd(TrainRouteAddViewModel trainRouteAddViewModel)
+        public async Task<IActionResult> TrainRouteAdd(TrainRouteAddViewModel trainRouteAddViewModel,  IFormFile Image)
         {
             var intStartRo = int.Parse(trainRouteAddViewModel.StartRo);
             var intRo1 = int.Parse(trainRouteAddViewModel.Ro1);
@@ -216,19 +232,29 @@ namespace TrainTicket.MVC.Controllers
 
             if (ModelState.IsValid)
             {
-               var trainRoute = new TrainRoute();
-                trainRoute.StartRo = startRoCityName;
-                trainRoute.Ro1 = ro1CityName;
-                trainRoute.Ro2 = ro2CityName;
-                trainRoute.Ro3 = ro3CityName;
-                trainRoute.FinishRo = finishRoCityName;
-                trainRoute.Time = trainRouteAddViewModel.Time;
-                trainRoute.Clock = trainRouteAddViewModel.Clock;
-                trainRoute.Image = trainRouteAddViewModel.Image;
-                trainRoute.Price = trainRouteAddViewModel.Price;
+                if (Image != null && Image.Length >0)
+                {
+                    var trainRoute = new TrainRoute();
+                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(Image.FileName);
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/TrenRouteMap", fileName);
+                    using (var stream = new FileStream(path,FileMode.Create))
+                    {
+                        await Image.CopyToAsync(stream);
+                        trainRoute.Image = "/TrenRouteMap/" + fileName;
+                    }
 
-                _trainRouteService.TAdd(trainRoute);
-                return RedirectToAction("TrainRouteList");
+                    trainRoute.StartRo = startRoCityName;
+                    trainRoute.Ro1 = ro1CityName;
+                    trainRoute.Ro2 = ro2CityName;
+                    trainRoute.Ro3 = ro3CityName;
+                    trainRoute.FinishRo = finishRoCityName;
+                    trainRoute.Time = trainRouteAddViewModel.Time;
+                    trainRoute.Clock = trainRouteAddViewModel.Clock;
+                    trainRoute.Price = trainRouteAddViewModel.Price;
+
+                    _trainRouteService.TAdd(trainRoute);
+                    return RedirectToAction("TrainRouteList");
+                }
             }
             return View(trainRouteAddViewModel);
         }
@@ -280,9 +306,43 @@ namespace TrainTicket.MVC.Controllers
             return View(cityAddViewModel);
         }
 
+        public async Task<IActionResult> MyProfile()
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            var userViewModel = user.Adapt<UserViewModel>();
+
+            return View(userViewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UserEdit()
+        {
+          var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            var userViewModel = user.Adapt<UserViewModel>();
+            return View(userViewModel);
+        }
 
 
-     
+        [HttpPost]
+        public async Task<IActionResult> UserEdit(UserViewModel userViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+              var user = await  _userManager.FindByNameAsync(User.Identity.Name);
+
+                user.UserName = userViewModel.UserName;
+                user.Email = userViewModel.Email;
+                user.PhoneNumber = userViewModel.PhoneNumber;
+               var result =await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("MyProfile");
+                }
+                return View(userViewModel);
+            }
+            return View(userViewModel);
+        }
+
 
     }
 }
